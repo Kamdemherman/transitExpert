@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,60 @@ Route::prefix('chat')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| Quote Request Routes
+|--------------------------------------------------------------------------
+|
+| Routes for handling quote requests from the calculator
+|
+*/
+
+Route::prefix('quotes')->group(function () {
+    Route::post('/', [QuoteController::class, 'store']);
+    Route::get('/{referenceNumber}', [QuoteController::class, 'show']);
+    
+    // Protected routes (require authentication)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/', [QuoteController::class, 'index']);
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Contact Routes
+|--------------------------------------------------------------------------
+|
+| Routes for handling contact form submissions
+|
+*/
+
+Route::prefix('contact')->group(function () {
+    Route::post('/', [ContactController::class, 'store']);
+    
+    // Protected routes (require authentication)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/', [ContactController::class, 'index']);
+        Route::patch('/{message}/read', [ContactController::class, 'markAsRead']);
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Blog Routes
+|--------------------------------------------------------------------------
+|
+| Routes for blog functionality and SEO content
+|
+*/
+
+Route::prefix('blog')->group(function () {
+    Route::get('/', [BlogController::class, 'index']);
+    Route::get('/recent', [BlogController::class, 'recent']);
+    Route::get('/popular', [BlogController::class, 'popular']);
+    Route::get('/{post}', [BlogController::class, 'show']);
+});
+
+/*
+|--------------------------------------------------------------------------
 | Freight Forwarder Specific Routes
 |--------------------------------------------------------------------------
 |
@@ -53,23 +110,10 @@ Route::prefix('chat')->group(function () {
 
 Route::prefix('freight')->group(function () {
     // Quote calculation routes
-    Route::post('/quote-request', function (Request $request) {
-        // Handle quote requests from the frontend form
-        return response()->json([
-            'success' => true,
-            'message' => 'Quote request received. We will respond within 2 business hours.',
-            'reference_number' => 'QR-' . now()->format('YmdHis') . '-' . rand(1000, 9999)
-        ]);
-    });
+    Route::post('/quote-request', [QuoteController::class, 'store']);
     
     // Contact form submission
-    Route::post('/contact', function (Request $request) {
-        // Handle contact form submissions
-        return response()->json([
-            'success' => true,
-            'message' => 'Your message has been sent successfully. We will respond within 2 business hours.'
-        ]);
-    });
+    Route::post('/contact', [ContactController::class, 'store']);
     
     // Tracking functionality (placeholder)
     Route::get('/track/{trackingNumber}', function ($trackingNumber) {

@@ -20,16 +20,35 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation d'envoi
-    alert('Message envoyé ! Nous vous répondrons dans les 2h ouvrées.');
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      subject: '',
-      message: ''
+    
+    // Send to backend API
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Message envoyé ! Nous vous répondrons dans les 2h ouvrées.');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
     });
   };
 

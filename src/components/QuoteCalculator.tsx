@@ -23,19 +23,38 @@ const QuoteCalculator: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Ici on simule l'envoi du devis
-    alert('Demande de devis envoyée ! Nous vous répondrons dans les 2h ouvrées.');
-    // Reset form
-    setFormData({
-      origin: '',
-      destination: '',
-      cargoType: '',
-      weight: '',
-      volume: '',
-      urgency: '',
-      description: '',
-      email: '',
-      company: ''
+    
+    // Send to backend API
+    fetch('/api/quotes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert(`Demande de devis envoyée ! Référence: ${data.data.reference_number}. Nous vous répondrons dans les 2h ouvrées.`);
+        // Reset form
+        setFormData({
+          origin: '',
+          destination: '',
+          cargoType: '',
+          weight: '',
+          volume: '',
+          urgency: '',
+          description: '',
+          email: '',
+          company: ''
+        });
+      } else {
+        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
     });
   };
 

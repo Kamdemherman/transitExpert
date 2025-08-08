@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Plane, Phone, Mail } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
+import LanguageToggle from './LanguageToggle';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  currentLanguage: string;
+  onLanguageChange: (language: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ currentLanguage, onLanguageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,37 +74,47 @@ const Header: React.FC = () => {
                 onClick={() => scrollToSection('accueil')}
                 className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
-                Accueil
+                {t('nav.home')}
               </button>
               <button
                 onClick={() => scrollToSection('services')}
                 className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
-                Services
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection('zones')}
                 className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
-                Zones géographiques
+                {t('nav.zones')}
               </button>
               <button
                 onClick={() => scrollToSection('apropos')}
                 className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
-                À propos
+                {t('nav.about')}
+              </button>
+              <button
+                onClick={() => scrollToSection('blog')}
+                className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+              >
+                {t('nav.blog')}
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className={`hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
-                Contact
+                {t('nav.contact')}
               </button>
+              <LanguageToggle 
+                currentLanguage={currentLanguage} 
+                onLanguageChange={onLanguageChange} 
+              />
               <button
                 onClick={() => scrollToSection('devis')}
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Demander un devis
+                {t('nav.quote')}
               </button>
             </div>
 
@@ -119,37 +137,43 @@ const Header: React.FC = () => {
                   onClick={() => scrollToSection('accueil')}
                   className="text-left text-gray-900 hover:text-blue-600 transition-colors"
                 >
-                  Accueil
+                  {t('nav.home')}
                 </button>
                 <button
                   onClick={() => scrollToSection('services')}
                   className="text-left text-gray-900 hover:text-blue-600 transition-colors"
                 >
-                  Services
+                  {t('nav.services')}
                 </button>
                 <button
                   onClick={() => scrollToSection('zones')}
                   className="text-left text-gray-900 hover:text-blue-600 transition-colors"
                 >
-                  Zones géographiques
+                  {t('nav.zones')}
                 </button>
                 <button
                   onClick={() => scrollToSection('apropos')}
                   className="text-left text-gray-900 hover:text-blue-600 transition-colors"
                 >
-                  À propos
+                  {t('nav.about')}
+                </button>
+                <button
+                  onClick={() => scrollToSection('blog')}
+                  className="text-left text-gray-900 hover:text-blue-600 transition-colors"
+                >
+                  {t('nav.blog')}
                 </button>
                 <button
                   onClick={() => scrollToSection('contact')}
                   className="text-left text-gray-900 hover:text-blue-600 transition-colors"
                 >
-                  Contact
+                  {t('nav.contact')}
                 </button>
                 <button
                   onClick={() => scrollToSection('devis')}
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center"
                 >
-                  Demander un devis
+                  {t('nav.quote')}
                 </button>
               </div>
             </div>

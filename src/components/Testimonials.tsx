@@ -54,12 +54,36 @@ const Testimonials: React.FC = () => {
   ];
 
   const partners = [
-    { name: 'Maersk', logo: 'M' },
-    { name: 'CMA CGM', logo: 'C' },
-    { name: 'Air France-KLM', logo: 'AF' },
-    { name: 'DHL', logo: 'DHL' },
-    { name: 'Hapag-Lloyd', logo: 'HL' },
-    { name: 'Emirates', logo: 'EK' }
+    { 
+      name: 'Maersk', 
+      logo: 'https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Leader mondial du transport maritime'
+    },
+    { 
+      name: 'CMA CGM', 
+      logo: 'https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Compagnie maritime française'
+    },
+    { 
+      name: 'Air France-KLM', 
+      logo: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Transport aérien de marchandises'
+    },
+    { 
+      name: 'DHL', 
+      logo: 'https://images.pexels.com/photos/4391470/pexels-photo-4391470.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Express et logistique internationale'
+    },
+    { 
+      name: 'Hapag-Lloyd', 
+      logo: 'https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Transport maritime conteneurisé'
+    },
+    { 
+      name: 'Emirates SkyCargo', 
+      logo: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
+      description: 'Fret aérien premium'
+    }
   ];
 
   return (
@@ -125,12 +149,18 @@ const Testimonials: React.FC = () => {
             {partners.map((partner, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
               >
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-blue-600 font-bold text-lg">{partner.logo}</span>
+                <div className="relative overflow-hidden rounded-lg mb-3">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="w-full h-16 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-blue-600 bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 </div>
-                <p className="text-gray-700 font-medium text-sm text-center">{partner.name}</p>
+                <h4 className="text-gray-900 font-semibold text-sm text-center mb-1">{partner.name}</h4>
+                <p className="text-gray-500 text-xs text-center leading-tight">{partner.description}</p>
               </div>
             ))}
           </div>
