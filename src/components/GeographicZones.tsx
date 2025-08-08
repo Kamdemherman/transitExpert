@@ -29,7 +29,7 @@ const GeographicZones: React.FC = () => {
     africa: {
       title: 'Afrique & Moyen-Orient',
       description: 'Expertise régionale pour les marchés africains et du Moyen-Orient en croissance.',
-      countries: ['Maroc', 'Tunisie', 'Algérie', 'Égypte', 'Afrique du Sud', 'EAU', 'Arabie Saoudite', 'Qatar'],
+      countries: ['Congo', 'Gabon', 'Cameroun', 'Égypte', 'Afrique du Sud', 'EAU', 'Arabie Saoudite', 'Qatar'],
       transports: ['Maritime', 'Aérien', 'Route Afrique du Nord'],
       features: ['Hub Dubaï', 'Expertise Maghreb', 'Solutions projet Afrique']
     }

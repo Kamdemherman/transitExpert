@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface Translations {
   [key: string]: {
@@ -11,7 +11,7 @@ const translations: Translations = {
     // Header
     'nav.home': 'Accueil',
     'nav.services': 'Services',
-    'nav.zones': 'Zones géographiques',
+    'nav.zones': 'Zones',
     'nav.about': 'À propos',
     'nav.contact': 'Contact',
     'nav.quote': 'Demander un devis',
@@ -62,7 +62,7 @@ const translations: Translations = {
     // Header
     'nav.home': 'Home',
     'nav.services': 'Services',
-    'nav.zones': 'Geographic Zones',
+    'nav.zones': 'Zones',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.quote': 'Get Quote',
@@ -111,26 +111,18 @@ const translations: Translations = {
   }
 };
 
-export const useTranslation = () => {
-  const [currentLanguage, setCurrentLanguage] = useState<string>('fr');
+export const useTranslation = (language?: string) => {
+  const currentLanguage = language || 'fr';
 
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && translations[savedLanguage]) {
-      setCurrentLanguage(savedLanguage);
+  const changeLanguage = useCallback((lang: string) => {
+    if (translations[lang]) {
+      localStorage.setItem('language', lang);
     }
   }, []);
 
-  const changeLanguage = (language: string) => {
-    if (translations[language]) {
-      setCurrentLanguage(language);
-      localStorage.setItem('language', language);
-    }
-  };
-
-  const t = (key: string): string => {
+  const t = useCallback((key: string): string => {
     return translations[currentLanguage]?.[key] || key;
-  };
+  }, [currentLanguage]);
 
   return {
     currentLanguage,

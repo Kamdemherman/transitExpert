@@ -2,12 +2,12 @@ import React from 'react';
 import { Award, Users, MapPin, Calendar, Shield, Target } from 'lucide-react';
 
 const About: React.FC = () => {
-  const certifications = [
-    { name: 'IATA', description: 'Agent agréé transport aérien' },
-    { name: 'OEA', description: 'Opérateur Économique Agréé' },
-    { name: 'ISO 9001', description: 'Management de la qualité' },
-    { name: 'ISO 14001', description: 'Management environnemental' }
-  ];
+  // const certifications = [
+  //   { name: 'IATA', description: 'Agent agréé transport aérien' },
+  //   { name: 'OEA', description: 'Opérateur Économique Agréé' },
+  //   { name: 'ISO 9001', description: 'Management de la qualité' },
+  //   { name: 'ISO 14001', description: 'Management environnemental' }
+  // ];
 
   const team = [
     {
@@ -77,7 +77,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Certifications */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <div className="text-center mb-12">
             <Shield className="mx-auto mb-4 text-blue-600" size={48} />
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -98,7 +98,7 @@ const About: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Team */}
         <div className="mb-16">

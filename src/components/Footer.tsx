@@ -178,7 +178,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Certifications */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h5 className="text-sm font-semibold text-gray-300 mb-3">Certifications</h5>
               <div className="flex flex-wrap gap-2">
                 <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">IATA</span>
@@ -186,7 +186,7 @@ const Footer: React.FC = () => {
                 <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">ISO 9001</span>
                 <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">ISO 14001</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

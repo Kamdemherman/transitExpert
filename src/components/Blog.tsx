@@ -26,7 +26,7 @@ const Blog: React.FC = () => {
       slug: "nouvelles-reglementations-douanieres-2024",
       excerpt: "Découvrez les principales modifications des réglementations douanières qui impactent vos expéditions internationales en 2024.",
       featured_image: "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      tags: ["Douanes", "Réglementation", "2024"],
+      tags: ["Douanes", "Réglementation"],
       published_at: "2024-01-15T10:00:00Z",
       views_count: 1250,
       reading_time: 5
@@ -59,7 +59,7 @@ const Blog: React.FC = () => {
       slug: "digitalisation-supply-chain-tendances",
       excerpt: "Comment la transformation digitale révolutionne la logistique internationale et améliore l'efficacité opérationnelle.",
       featured_image: "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      tags: ["Digital", "Supply Chain", "Innovation", "Technologie"],
+      tags: ["Digital", "Innovation", "Technologie"],
       published_at: "2023-12-28T16:45:00Z",
       views_count: 750,
       reading_time: 8
@@ -70,7 +70,7 @@ const Blog: React.FC = () => {
       slug: "transport-marchandises-dangereuses-adr-imdg",
       excerpt: "Tout ce qu'il faut savoir sur le transport sécurisé des matières dangereuses par route et mer.",
       featured_image: "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      tags: ["Sécurité", "ADR", "IMDG", "Matières Dangereuses"],
+      tags: ["Sécurité", ],
       published_at: "2023-12-20T11:20:00Z",
       views_count: 620,
       reading_time: 4
@@ -81,7 +81,7 @@ const Blog: React.FC = () => {
       slug: "brexit-commerce-international-impact-uk",
       excerpt: "Analyse des nouvelles procédures douanières et formalités pour vos échanges avec le Royaume-Uni post-Brexit.",
       featured_image: "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      tags: ["Brexit", "UK", "Douanes", "Procédures"],
+      tags: [ "Douanes", ],
       published_at: "2023-12-15T13:10:00Z",
       views_count: 890,
       reading_time: 6

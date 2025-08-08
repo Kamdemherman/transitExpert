@@ -1,8 +1,11 @@
 import React from 'react';
 import { ArrowRight, Shield, Clock, Globe, MessageCircle } from 'lucide-react';
 import ChatButton from './ChatButton';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
+
   const scrollToDevis = () => {
     const element = document.getElementById('devis');
     if (element) {
@@ -23,31 +26,30 @@ const Hero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900">
-          Votre partenaire de confiance pour le
-          <span className="block text-blue-600">transport international</span>
+          {t('hero.title')}
+          <span className="block text-blue-600">{t('hero.subtitle')}</span>
         </h1>
         
         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-gray-600">
-          Solutions complètes de transitariat, dédouanement et logistique internationale. 
-          Plus de 15 ans d'expérience au service de votre supply chain.
+          {t('hero.description')}
         </p>
 
         {/* Key Benefits */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
           <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
             <Shield className="mx-auto mb-4 text-blue-600" size={48} />
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Sécurité garantie</h3>
-            <p className="text-gray-600">Certifications IATA, OEA et ISO pour une sécurité maximale</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">{t('services.air.title')}</h3>
+            <p className="text-gray-600">{t('services.air.description')}</p>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
             <Clock className="mx-auto mb-4 text-blue-600" size={48} />
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Suivi temps réel</h3>
-            <p className="text-gray-600">Traçabilité complète de vos marchandises 24h/24</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">{t('services.tracking.title')}</h3>
+            <p className="text-gray-600">{t('services.tracking.description')}</p>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
             <Globe className="mx-auto mb-4 text-blue-600" size={48} />
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">Réseau mondial</h3>
-            <p className="text-gray-600">Plus de 150 destinations dans le monde entier</p>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">{t('services.sea.title')}</h3>
+            <p className="text-gray-600">{t('services.sea.description')}</p>
           </div>
         </div>
 
@@ -57,7 +59,7 @@ const Hero: React.FC = () => {
             onClick={scrollToDevis}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
-            <span>Demander un devis gratuit</span>
+            <span>{t('hero.cta.quote')}</span>
             <ArrowRight size={20} />
           </button>
           <button
@@ -67,7 +69,7 @@ const Hero: React.FC = () => {
             }}
             className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300"
           >
-            Découvrir nos services
+            {t('hero.cta.services')}
           </button>
         </div>
       </div>
