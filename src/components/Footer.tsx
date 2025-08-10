@@ -1,7 +1,10 @@
 import React from 'react';
 import { Plane, Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -19,13 +22,12 @@ const Footer: React.FC = () => {
               <Plane className="text-blue-400" size={32} />
               <div>
                 <h3 className="text-xl font-bold">TransitExpert</h3>
-                <p className="text-gray-400 text-sm">Votre partenaire logistique</p>
+                <p className="text-gray-400 text-sm">{t('footer.tagline')}</p>
               </div>
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Plus de 15 ans d'expertise dans le transitariat international. 
-              Solutions complètes pour tous vos besoins logistiques.
+              {t('footer.description')}
             </p>
             
             <div className="flex space-x-4">
@@ -46,14 +48,14 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Nos Services</h4>
+            <h4 className="text-lg font-semibold mb-6">{t('footer.services')}</h4>
             <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Transport aérien
+                  {t('services.air.title')}
                 </button>
               </li>
               <li>
@@ -61,7 +63,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Transport maritime
+                  {t('services.sea.title')}
                 </button>
               </li>
               <li>
@@ -69,7 +71,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Transport terrestre
+                  {t('services.road.title')}
                 </button>
               </li>
               <li>
@@ -77,7 +79,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Dédouanement
+                  {t('services.customs.title')}
                 </button>
               </li>
               <li>
@@ -85,7 +87,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Stockage & Distribution
+                  {t('services.warehouse.title')}
                 </button>
               </li>
               <li>
@@ -93,7 +95,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('services')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Solutions sur mesure
+                  {t('services.custom.title')}
                 </button>
               </li>
             </ul>
@@ -101,14 +103,14 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Liens rapides</h4>
+            <h4 className="text-lg font-semibold mb-6">{t('footer.links')}</h4>
             <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('accueil')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Accueil
+                  {t('nav.home')}
                 </button>
               </li>
               <li>
@@ -116,7 +118,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('apropos')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  À propos
+                  {t('nav.about')}
                 </button>
               </li>
               <li>
@@ -124,7 +126,7 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('zones')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Zones géographiques
+                  {t('nav.zones')}
                 </button>
               </li>
               <li>
@@ -132,17 +134,17 @@ const Footer: React.FC = () => {
                   onClick={() => scrollToSection('devis')}
                   className="text-gray-300 hover:text-blue-400 transition-colors text-left"
                 >
-                  Demander un devis
+                  {t('nav.quote')}
                 </button>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
-                  Blog logistique
+                  {t('nav.blog')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
-                  Carrières
+                  {t('footer.careers')}
                 </a>
               </li>
             </ul>
@@ -150,7 +152,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contact</h4>
+            <h4 className="text-lg font-semibold mb-6">{t('footer.contact')}</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="text-blue-400 flex-shrink-0 mt-1" size={18} />
@@ -164,7 +166,7 @@ const Footer: React.FC = () => {
                 <Phone className="text-blue-400 flex-shrink-0" size={18} />
                 <div>
                   <p className="text-gray-300">+33 1 23 45 67 89</p>
-                  <p className="text-gray-400 text-sm">24h/7j urgences</p>
+                  <p className="text-gray-400 text-sm">{t('footer.service.hours')}</p>
                 </div>
               </div>
               
@@ -172,7 +174,7 @@ const Footer: React.FC = () => {
                 <Mail className="text-blue-400 flex-shrink-0" size={18} />
                 <div>
                   <p className="text-gray-300">contact@transitaire-expert.fr</p>
-                  <p className="text-gray-400 text-sm">Réponse sous 2h</p>
+                  <p className="text-gray-400 text-sm">{t('footer.response')}</p>
                 </div>
               </div>
             </div>
@@ -194,24 +196,24 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              <p>&copy; 2024 TransitExpert. Tous droits réservés.</p>
+              <p>&copy; 2024 TransitExpert. {t('footer.rights')}.</p>
             </div>
             
             <div className="flex flex-wrap gap-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Mentions légales
+                {t('footer.legal')}
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Politique de confidentialité
+                {t('footer.privacy')}
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Conditions générales
+                {t('footer.terms')}
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
                 RGPD
               </a>
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
-                Cookies
+                {t('footer.cookies')}
               </a>
             </div>
           </div>
