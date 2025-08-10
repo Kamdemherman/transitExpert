@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Calculator, Package, MapPin, Clock, Weight } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const QuoteCalculator: React.FC = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     origin: '',
     destination: '',
@@ -64,11 +67,10 @@ const QuoteCalculator: React.FC = () => {
         <div className="text-center mb-12">
           <Calculator className="mx-auto mb-4 text-blue-600" size={48} />
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Calculateur de devis en ligne
+            {t('quote.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Obtenez un devis personnalisé en quelques clics. Notre équipe vous répond 
-            sous 2h ouvrées avec une proposition détaillée.
+            {t('quote.description')}
           </p>
         </div>
 
@@ -79,33 +81,33 @@ const QuoteCalculator: React.FC = () => {
               <div className="border-b pb-6 mb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <MapPin className="mr-2 text-blue-600" size={24} />
-                  Itinéraire
+                  {t('quote.route.title')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Origine *
+                      {t('quote.origin')} *
                     </label>
                     <input
                       type="text"
                       name="origin"
                       value={formData.origin}
                       onChange={handleInputChange}
-                      placeholder="Ville/Port/Aéroport de départ"
+                      placeholder={t('quote.origin') === 'Origine' ? 'Ville/Port/Aéroport de départ' : 'City/Port/Airport of departure'}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Destination *
+                      {t('quote.destination')} *
                     </label>
                     <input
                       type="text"
                       name="destination"
                       value={formData.destination}
                       onChange={handleInputChange}
-                      placeholder="Ville/Port/Aéroport d'arrivée"
+                      placeholder={t('quote.destination') === 'Destination' ? 'Ville/Port/Aéroport d\'arrivée' : 'City/Port/Airport of arrival'}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
@@ -117,12 +119,12 @@ const QuoteCalculator: React.FC = () => {
               <div className="border-b pb-6 mb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <Package className="mr-2 text-blue-600" size={24} />
-                  Détails de la marchandise
+                  {t('quote.cargo.title')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Type de marchandise *
+                      {t('quote.cargo.type')} *
                     </label>
                     <select
                       name="cargoType"
@@ -131,18 +133,18 @@ const QuoteCalculator: React.FC = () => {
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     >
-                      <option value="">Sélectionner</option>
-                      <option value="general">Marchandise générale</option>
-                      <option value="perishable">Périssable</option>
-                      <option value="dangerous">Matière dangereuse</option>
-                      <option value="fragile">Fragile</option>
-                      <option value="oversized">Hors gabarit</option>
-                      <option value="vehicles">Véhicules</option>
+                      <option value="">{t('quote.cargo.type') === 'Type de marchandise' ? 'Sélectionner' : 'Select'}</option>
+                      <option value="general">{t('quote.cargo.type') === 'Type de marchandise' ? 'Marchandise générale' : 'General cargo'}</option>
+                      <option value="perishable">{t('quote.cargo.type') === 'Type de marchandise' ? 'Périssable' : 'Perishable'}</option>
+                      <option value="dangerous">{t('quote.cargo.type') === 'Type de marchandise' ? 'Matière dangereuse' : 'Dangerous goods'}</option>
+                      <option value="fragile">{t('quote.cargo.type') === 'Type de marchandise' ? 'Fragile' : 'Fragile'}</option>
+                      <option value="oversized">{t('quote.cargo.type') === 'Type de marchandise' ? 'Hors gabarit' : 'Oversized'}</option>
+                      <option value="vehicles">{t('quote.cargo.type') === 'Type de marchandise' ? 'Véhicules' : 'Vehicles'}</option>
                     </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Poids (kg) *
+                      {t('quote.weight')} *
                     </label>
                     <input
                       type="number"
@@ -156,7 +158,7 @@ const QuoteCalculator: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Volume (m³)
+                      {t('quote.volume')}
                     </label>
                     <input
                       type="number"
@@ -171,14 +173,14 @@ const QuoteCalculator: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Description de la marchandise
+                    {t('quote.description')}
                   </label>
                   <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
                     rows={3}
-                    placeholder="Décrivez votre marchandise, emballage, contraintes spécifiques..."
+                    placeholder={t('quote.description') === 'Description de la marchandise' ? 'Décrivez votre marchandise, emballage, contraintes spécifiques...' : 'Describe your goods, packaging, specific constraints...'}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -188,7 +190,7 @@ const QuoteCalculator: React.FC = () => {
               <div className="border-b pb-6 mb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <Clock className="mr-2 text-blue-600" size={24} />
-                  Délai souhaité
+                  {t('quote.timing.title')}
                 </h3>
                 <select
                   name="urgency"
@@ -197,44 +199,44 @@ const QuoteCalculator: React.FC = () => {
                   className="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
-                  <option value="">Sélectionner le délai</option>
-                  <option value="express">Express (24-48h)</option>
-                  <option value="urgent">Urgent (2-5 jours)</option>
-                  <option value="standard">Standard (1-2 semaines)</option>
-                  <option value="economy">Économique (3-4 semaines)</option>
+                  <option value="">{t('quote.timing.title') === 'Délai souhaité' ? 'Sélectionner le délai' : 'Select timeline'}</option>
+                  <option value="express">{t('quote.timing.title') === 'Délai souhaité' ? 'Express (24-48h)' : 'Express (24-48h)'}</option>
+                  <option value="urgent">{t('quote.timing.title') === 'Délai souhaité' ? 'Urgent (2-5 jours)' : 'Urgent (2-5 days)'}</option>
+                  <option value="standard">{t('quote.timing.title') === 'Délai souhaité' ? 'Standard (1-2 semaines)' : 'Standard (1-2 weeks)'}</option>
+                  <option value="economy">{t('quote.timing.title') === 'Délai souhaité' ? 'Économique (3-4 semaines)' : 'Economy (3-4 weeks)'}</option>
                 </select>
               </div>
 
               {/* Contact Section */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                  Informations de contact
+                  {t('quote.contact.title')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Entreprise *
+                      {t('quote.company')} *
                     </label>
                     <input
                       type="text"
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      placeholder="Nom de votre entreprise"
+                      placeholder={t('quote.company') === 'Entreprise' ? 'Nom de votre entreprise' : 'Your company name'}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email professionnel *
+                      {t('quote.email')} *
                     </label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="contact@votre-entreprise.com"
+                      placeholder={t('quote.email') === 'Email professionnel' ? 'contact@votre-entreprise.com' : 'contact@your-company.com'}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     />
@@ -249,10 +251,10 @@ const QuoteCalculator: React.FC = () => {
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center mx-auto space-x-2"
                 >
                   <Calculator size={20} />
-                  <span>Obtenir mon devis gratuit</span>
+                  <span>{t('quote.submit')}</span>
                 </button>
                 <p className="text-sm text-gray-500 mt-3">
-                  Réponse sous 2h ouvrées • Devis gratuit et sans engagement
+                  {t('quote.response')}
                 </p>
               </div>
             </form>

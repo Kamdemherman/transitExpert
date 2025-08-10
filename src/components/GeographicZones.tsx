@@ -1,37 +1,72 @@
 import React, { useState } from 'react';
 import { Globe, MapPin, Plane, Ship, Truck } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const GeographicZones: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedZone, setSelectedZone] = useState('europe');
 
   const zones = {
     europe: {
-      title: 'Europe',
-      description: 'Réseau dense couvrant tous les pays européens avec des liaisons quotidiennes.',
+      title: t('zones.europe.title'),
+      description: t('zones.europe.description'),
       countries: ['France', 'Allemagne', 'Italie', 'Espagne', 'Royaume-Uni', 'Pays-Bas', 'Belgique', 'Pologne'],
-      transports: ['Route', 'Rail', 'Maritime', 'Aérien'],
-      features: ['Livraisons express 24-48h', 'Groupage optimisé', 'Dédouanement UE simplifié']
+      transports: [
+        t('zones.europe.title') === 'Europe' ? 'Route' : 'Road',
+        t('zones.europe.title') === 'Europe' ? 'Rail' : 'Rail',
+        t('zones.europe.title') === 'Europe' ? 'Maritime' : 'Maritime',
+        t('zones.europe.title') === 'Europe' ? 'Aérien' : 'Air'
+      ],
+      features: [
+        t('zones.europe.title') === 'Europe' ? 'Livraisons express 24-48h' : 'Express delivery 24-48h',
+        t('zones.europe.title') === 'Europe' ? 'Groupage optimisé' : 'Optimized groupage',
+        t('zones.europe.title') === 'Europe' ? 'Dédouanement UE simplifié' : 'Simplified EU customs'
+      ]
     },
     asia: {
-      title: 'Asie',
-      description: 'Couverture complète de l\'Asie avec des hubs stratégiques dans les principales métropoles.',
+      title: t('zones.asia.title'),
+      description: t('zones.asia.description'),
       countries: ['Chine', 'Japon', 'Corée du Sud', 'Singapour', 'Hong Kong', 'Thaïlande', 'Vietnam', 'Inde'],
-      transports: ['Maritime FCL/LCL', 'Aérien', 'Rail Chine-Europe'],
-      features: ['Consolidation Shenzhen/Shanghai', 'Express aérien Asie', 'Rail route de la soie']
+      transports: [
+        t('zones.asia.title') === 'Asie' ? 'Maritime FCL/LCL' : 'Maritime FCL/LCL',
+        t('zones.asia.title') === 'Asie' ? 'Aérien' : 'Air',
+        t('zones.asia.title') === 'Asie' ? 'Rail Chine-Europe' : 'China-Europe Rail'
+      ],
+      features: [
+        t('zones.asia.title') === 'Asie' ? 'Consolidation Shenzhen/Shanghai' : 'Shenzhen/Shanghai consolidation',
+        t('zones.asia.title') === 'Asie' ? 'Express aérien Asie' : 'Asia air express',
+        t('zones.asia.title') === 'Asie' ? 'Rail route de la soie' : 'Silk road rail'
+      ]
     },
     americas: {
-      title: 'Amériques',
-      description: 'Solutions complètes pour l\'Amérique du Nord et du Sud avec nos partenaires locaux.',
+      title: t('zones.americas.title'),
+      description: t('zones.americas.description'),
       countries: ['États-Unis', 'Canada', 'Brésil', 'Argentine', 'Mexique', 'Chili', 'Colombie', 'Pérou'],
-      transports: ['Maritime', 'Aérien', 'Route Amérique du Nord'],
-      features: ['Hubs Miami/Los Angeles', 'Dédouanement USA/Canada', 'Solutions Amérique latine']
+      transports: [
+        t('zones.americas.title') === 'Amériques' ? 'Maritime' : 'Maritime',
+        t('zones.americas.title') === 'Amériques' ? 'Aérien' : 'Air',
+        t('zones.americas.title') === 'Amériques' ? 'Route Amérique du Nord' : 'North America road'
+      ],
+      features: [
+        t('zones.americas.title') === 'Amériques' ? 'Hubs Miami/Los Angeles' : 'Miami/Los Angeles hubs',
+        t('zones.americas.title') === 'Amériques' ? 'Dédouanement USA/Canada' : 'USA/Canada customs',
+        t('zones.americas.title') === 'Amériques' ? 'Solutions Amérique latine' : 'Latin America solutions'
+      ]
     },
     africa: {
-      title: 'Afrique & Moyen-Orient',
-      description: 'Expertise régionale pour les marchés africains et du Moyen-Orient en croissance.',
+      title: t('zones.africa.title'),
+      description: t('zones.africa.description'),
       countries: ['Congo', 'Gabon', 'Cameroun', 'Égypte', 'Afrique du Sud', 'EAU', 'Arabie Saoudite', 'Qatar'],
-      transports: ['Maritime', 'Aérien', 'Route Afrique du Nord'],
-      features: ['Hub Dubaï', 'Expertise Maghreb', 'Solutions projet Afrique']
+      transports: [
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Maritime' : 'Maritime',
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Aérien' : 'Air',
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Route Afrique du Nord' : 'North Africa road'
+      ],
+      features: [
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Hub Dubaï' : 'Dubai hub',
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Expertise Maghreb' : 'Maghreb expertise',
+        t('zones.africa.title') === 'Afrique & Moyen-Orient' ? 'Solutions projet Afrique' : 'Africa project solutions'
+      ]
     }
   };
 
@@ -43,11 +78,10 @@ const GeographicZones: React.FC = () => {
         <div className="text-center mb-16">
           <Globe className="mx-auto mb-4 text-blue-600" size={48} />
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Nos zones géographiques
+            {t('zones.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Un réseau mondial de plus de 150 destinations pour accompagner 
-            votre développement international.
+            {t('zones.description')}
           </p>
         </div>
 
@@ -84,7 +118,7 @@ const GeographicZones: React.FC = () => {
                 {/* Transport Modes */}
                 <div className="mb-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                    Modes de transport disponibles
+                    {t('zones.transport.title')}
                   </h4>
                   <div className="flex flex-wrap gap-3">
                     {currentZone.transports.map((transport, index) => {
@@ -112,7 +146,7 @@ const GeographicZones: React.FC = () => {
                 {/* Features */}
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                    Services spécialisés
+                    {t('zones.services.title')}
                   </h4>
                   <ul className="space-y-2">
                     {currentZone.features.map((feature, index) => (
@@ -128,7 +162,7 @@ const GeographicZones: React.FC = () => {
               {/* Countries Grid */}
               <div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                  Principales destinations
+                  {t('zones.destinations.title')}
                 </h4>
                 <div className="grid grid-cols-2 gap-3">
                   {currentZone.countries.map((country, index) => (
@@ -147,10 +181,10 @@ const GeographicZones: React.FC = () => {
                 {/* CTA */}
                 <div className="mt-8 p-6 bg-blue-50 rounded-lg">
                   <h5 className="font-semibold text-gray-900 mb-2">
-                    Destination non listée ?
+                    {t('zones.not.listed')}
                   </h5>
                   <p className="text-gray-600 mb-4 text-sm">
-                    Notre réseau couvre plus de 150 pays. Contactez-nous pour toute destination spécifique.
+                    {t('zones.not.listed') === 'Destination non listée ?' ? 'Notre réseau couvre plus de 150 pays. Contactez-nous pour toute destination spécifique.' : 'Our network covers over 150 countries. Contact us for any specific destination.'}
                   </p>
                   <button
                     onClick={() => {
@@ -159,7 +193,7 @@ const GeographicZones: React.FC = () => {
                     }}
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                   >
-                    Nous consulter
+                    {t('zones.consult')}
                   </button>
                 </div>
               </div>

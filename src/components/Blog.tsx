@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, User, Eye, ArrowRight, Tag } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface BlogPost {
   id: number;
@@ -14,6 +15,7 @@ interface BlogPost {
 }
 
 const Blog: React.FC = () => {
+  const { t } = useTranslation();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState<string>('');
@@ -128,11 +130,10 @@ const Blog: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Blog Logistique
+            {t('blog.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Actualités, conseils d'experts et guides pratiques pour optimiser 
-            votre supply chain internationale.
+            {t('blog.description')}
           </p>
         </div>
 
@@ -146,7 +147,7 @@ const Blog: React.FC = () => {
                 : 'bg-white text-gray-600 hover:bg-blue-50'
             }`}
           >
-            Tous les articles
+            {t('blog.all')}
           </button>
           {allTags.map((tag, index) => (
             <button
@@ -178,7 +179,7 @@ const Blog: React.FC = () => {
                 />
                 <div className="absolute top-4 left-4">
                   <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                    {post.reading_time} min de lecture
+                    {post.reading_time} {t('blog.reading')}
                   </span>
                 </div>
               </div>
@@ -188,7 +189,7 @@ const Blog: React.FC = () => {
                   <Calendar size={16} className="mr-2" />
                   <span>{formatDate(post.published_at)}</span>
                   <Eye size={16} className="ml-4 mr-2" />
-                  <span>{post.views_count} vues</span>
+                  <span>{post.views_count} {t('blog.views')}</span>
                 </div>
 
                 <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
@@ -212,7 +213,7 @@ const Blog: React.FC = () => {
                 </div>
 
                 <button className="flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors">
-                  Lire l'article
+                  {t('blog.read')}
                   <ArrowRight size={16} className="ml-2" />
                 </button>
               </div>
@@ -223,24 +224,23 @@ const Blog: React.FC = () => {
         {/* Newsletter Subscription */}
         <div className="bg-blue-600 rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
-            Restez informé des dernières actualités logistiques
+            {t('blog.newsletter.title')}
           </h3>
           <p className="text-blue-200 mb-6 max-w-2xl mx-auto">
-            Recevez notre newsletter mensuelle avec les tendances du secteur, 
-            conseils d'experts et actualités réglementaires.
+            {t('blog.newsletter.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Votre email professionnel"
+              placeholder={t('blog.newsletter.placeholder')}
               className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
             <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-              S'abonner
+              {t('blog.newsletter.subscribe')}
             </button>
           </div>
           <p className="text-blue-200 text-sm mt-3">
-            Pas de spam, désabonnement en un clic
+            {t('blog.newsletter.note')}
           </p>
         </div>
       </div>

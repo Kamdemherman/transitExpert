@@ -1,55 +1,90 @@
 import React from 'react';
 import { Plane, Ship, Truck, FileCheck, Warehouse, MapPin, AlertTriangle, Settings } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Services: React.FC = () => {
+  const { t } = useTranslation();
+
   const services = [
     {
       icon: Plane,
-      title: 'Transport aérien',
-      description: 'Solutions de fret aérien rapides et sécurisées pour vos expéditions urgentes.',
-      features: ['Express et standard', 'Cargo charter', 'Marchandises périssables']
+      title: t('services.air.title'),
+      description: t('services.air.description'),
+      features: [
+        t('services.air.title') === 'Transport aérien' ? 'Express et standard' : 'Express and standard',
+        t('services.air.title') === 'Transport aérien' ? 'Cargo charter' : 'Cargo charter',
+        t('services.air.title') === 'Transport aérien' ? 'Marchandises périssables' : 'Perishable goods'
+      ]
     },
     {
       icon: Ship,
-      title: 'Transport maritime',
-      description: 'FCL, LCL et solutions roll-on/roll-off pour tous types de marchandises.',
-      features: ['Conteneurs complets/groupage', 'Roro et breakbulk', 'Projets industriels']
+      title: t('services.sea.title'),
+      description: t('services.sea.description'),
+      features: [
+        t('services.sea.title') === 'Transport maritime' ? 'Conteneurs complets/groupage' : 'Full containers/groupage',
+        t('services.sea.title') === 'Transport maritime' ? 'Roro et breakbulk' : 'Roro and breakbulk',
+        t('services.sea.title') === 'Transport maritime' ? 'Projets industriels' : 'Industrial projects'
+      ]
     },
     {
       icon: Truck,
-      title: 'Transport terrestre',
-      description: 'Livraisons terrestres fiables en Europe et corridors internationaux.',
-      features: ['Route Europe', 'Multimodal', 'Livraisons porte à porte']
+      title: t('services.road.title'),
+      description: t('services.road.description'),
+      features: [
+        t('services.road.title') === 'Transport terrestre' ? 'Route Europe' : 'European routes',
+        t('services.road.title') === 'Transport terrestre' ? 'Multimodal' : 'Multimodal',
+        t('services.road.title') === 'Transport terrestre' ? 'Livraisons porte à porte' : 'Door-to-door delivery'
+      ]
     },
     {
       icon: FileCheck,
-      title: 'Dédouanement',
-      description: 'Expertise douanière complète pour simplifier vos formalités.',
-      features: ['Import/Export', 'Régimes douaniers', 'Conseils réglementaires']
+      title: t('services.customs.title'),
+      description: t('services.customs.description'),
+      features: [
+        'Import/Export',
+        t('services.customs.title') === 'Dédouanement' ? 'Régimes douaniers' : 'Customs regimes',
+        t('services.customs.title') === 'Dédouanement' ? 'Conseils réglementaires' : 'Regulatory advice'
+      ]
     },
     {
       icon: Warehouse,
-      title: 'Stockage & Distribution',
-      description: 'Entrepôts sécurisés et solutions de distribution sur mesure.',
-      features: ['Stockage longue durée', 'Cross-docking', 'Préparation commandes']
+      title: t('services.warehouse.title'),
+      description: t('services.warehouse.description'),
+      features: [
+        t('services.warehouse.title') === 'Stockage & Distribution' ? 'Stockage longue durée' : 'Long-term storage',
+        'Cross-docking',
+        t('services.warehouse.title') === 'Stockage & Distribution' ? 'Préparation commandes' : 'Order preparation'
+      ]
     },
     {
       icon: MapPin,
-      title: 'Suivi temps réel',
-      description: 'Traçabilité complète de vos marchandises avec notre plateforme.',
-      features: ['Géolocalisation', 'Alertes SMS/Email', 'Reporting détaillé']
+      title: t('services.tracking.title'),
+      description: t('services.tracking.description'),
+      features: [
+        t('services.tracking.title') === 'Suivi temps réel' ? 'Géolocalisation' : 'Geolocation',
+        t('services.tracking.title') === 'Suivi temps réel' ? 'Alertes SMS/Email' : 'SMS/Email alerts',
+        t('services.tracking.title') === 'Suivi temps réel' ? 'Reporting détaillé' : 'Detailed reporting'
+      ]
     },
     {
       icon: AlertTriangle,
-      title: 'Marchandises dangereuses',
-      description: 'Transport sécurisé de matières dangereuses selon réglementations.',
-      features: ['ADR/IMDG/IATA DGR', 'Formation équipes', 'Documentation complète']
+      title: t('services.dangerous.title'),
+      description: t('services.dangerous.description'),
+      features: [
+        'ADR/IMDG/IATA DGR',
+        t('services.dangerous.title') === 'Marchandises dangereuses' ? 'Formation équipes' : 'Team training',
+        t('services.dangerous.title') === 'Marchandises dangereuses' ? 'Documentation complète' : 'Complete documentation'
+      ]
     },
     {
       icon: Settings,
-      title: 'Solutions sur mesure',
-      description: 'Projets industriels et solutions logistiques personnalisées.',
-      features: ['Projets clés en main', 'Ingénierie logistique', 'Consultation expert']
+      title: t('services.custom.title'),
+      description: t('services.custom.description'),
+      features: [
+        t('services.custom.title') === 'Solutions sur mesure' ? 'Projets clés en main' : 'Turnkey projects',
+        t('services.custom.title') === 'Solutions sur mesure' ? 'Ingénierie logistique' : 'Logistics engineering',
+        t('services.custom.title') === 'Solutions sur mesure' ? 'Consultation expert' : 'Expert consultation'
+      ]
     }
   ];
 
@@ -58,11 +93,10 @@ const Services: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Nos services de transitariat
+            {t('services.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Solutions complètes de transport international, dédouanement et logistique 
-            adaptées à tous vos besoins professionnels.
+            {t('services.description')}
           </p>
         </div>
 
@@ -96,7 +130,7 @@ const Services: React.FC = () => {
                 </ul>
                 
                 <button className="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                  En savoir plus
+                  {t('services.custom.title') === 'Solutions sur mesure' ? 'En savoir plus' : 'Learn more'}
                 </button>
               </div>
             );
@@ -106,11 +140,10 @@ const Services: React.FC = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-            Besoin d'une solution sur mesure ?
+            {t('services.cta.title')}
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Nos experts analysent vos besoins et vous proposent la solution logistique 
-            la plus adaptée à votre activité.
+            {t('services.cta.description')}
           </p>
           <button
             onClick={() => {
@@ -119,7 +152,7 @@ const Services: React.FC = () => {
             }}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold"
           >
-            Contactez nos experts
+            {t('services.cta.button')}
           </button>
         </div>
       </div>

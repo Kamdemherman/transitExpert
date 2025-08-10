@@ -1,7 +1,10 @@
 import React from 'react';
 import { Award, Users, MapPin, Calendar, Shield, Target } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
+
   // const certifications = [
   //   { name: 'IATA', description: 'Agent agréé transport aérien' },
   //   { name: 'OEA', description: 'Opérateur Économique Agréé' },
@@ -12,31 +15,49 @@ const About: React.FC = () => {
   const team = [
     {
       name: 'Marie Dubois',
-      position: 'Directrice Générale',
-      experience: '20 ans d\'expérience',
+      position: t('about.team.title') === 'Notre équipe dirigeante' ? 'Directrice Générale' : 'General Manager',
+      experience: t('about.team.title') === 'Notre équipe dirigeante' ? '20 ans d\'expérience' : '20 years experience',
       photo: 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop'
     },
     {
       name: 'Jean Martin',
-      position: 'Directeur des Opérations',
-      experience: '15 ans d\'expérience',
+      position: t('about.team.title') === 'Notre équipe dirigeante' ? 'Directeur des Opérations' : 'Operations Director',
+      experience: t('about.team.title') === 'Notre équipe dirigeante' ? '15 ans d\'expérience' : '15 years experience',
       photo: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop'
     },
     {
       name: 'Sophie Laurent',
-      position: 'Responsable Douanes',
-      experience: '12 ans d\'expérience',
+      position: t('about.team.title') === 'Notre équipe dirigeante' ? 'Responsable Douanes' : 'Customs Manager',
+      experience: t('about.team.title') === 'Notre équipe dirigeante' ? '12 ans d\'expérience' : '12 years experience',
       photo: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop'
     }
   ];
 
   const milestones = [
-    { year: '2008', event: 'Création de TransitExpert' },
-    { year: '2012', event: 'Obtention certification IATA' },
-    { year: '2015', event: 'Ouverture agence Lyon' },
-    { year: '2018', event: 'Certification OEA' },
-    { year: '2020', event: 'Plateforme digitale de suivi' },
-    { year: '2023', event: '5000+ expéditions/mois' }
+    { 
+      year: '2008', 
+      event: t('about.history.title') === 'Notre histoire' ? 'Création de TransitExpert' : 'TransitExpert founded'
+    },
+    { 
+      year: '2012', 
+      event: t('about.history.title') === 'Notre histoire' ? 'Obtention certification IATA' : 'IATA certification obtained'
+    },
+    { 
+      year: '2015', 
+      event: t('about.history.title') === 'Notre histoire' ? 'Ouverture agence Lyon' : 'Lyon office opening'
+    },
+    { 
+      year: '2018', 
+      event: t('about.history.title') === 'Notre histoire' ? 'Certification OEA' : 'AEO certification'
+    },
+    { 
+      year: '2020', 
+      event: t('about.history.title') === 'Notre histoire' ? 'Plateforme digitale de suivi' : 'Digital tracking platform'
+    },
+    { 
+      year: '2023', 
+      event: t('about.history.title') === 'Notre histoire' ? '5000+ expéditions/mois' : '5000+ shipments/month'
+    }
   ];
 
   return (
@@ -44,11 +65,10 @@ const About: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            À propos de TransitExpert
+            {t('about.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Plus de 15 ans d'expertise au service de votre supply chain internationale. 
-            Une équipe passionnée, des certifications reconnues et un engagement qualité constant.
+            {t('about.description')}
           </p>
         </div>
 
@@ -57,22 +77,22 @@ const About: React.FC = () => {
           <div className="bg-blue-50 p-6 rounded-lg">
             <Calendar className="mx-auto mb-4 text-blue-600" size={40} />
             <div className="text-3xl font-bold text-gray-900 mb-2">15+</div>
-            <div className="text-gray-600">Années d'expérience</div>
+            <div className="text-gray-600">{t('about.years')}</div>
           </div>
           <div className="bg-blue-50 p-6 rounded-lg">
             <Users className="mx-auto mb-4 text-blue-600" size={40} />
             <div className="text-3xl font-bold text-gray-900 mb-2">50+</div>
-            <div className="text-gray-600">Collaborateurs experts</div>
+            <div className="text-gray-600">{t('about.experts')}</div>
           </div>
           <div className="bg-blue-50 p-6 rounded-lg">
             <MapPin className="mx-auto mb-4 text-blue-600" size={40} />
             <div className="text-3xl font-bold text-gray-900 mb-2">3</div>
-            <div className="text-gray-600">Agences en France</div>
+            <div className="text-gray-600">{t('about.agencies')}</div>
           </div>
           <div className="bg-blue-50 p-6 rounded-lg">
             <Target className="mx-auto mb-4 text-blue-600" size={40} />
             <div className="text-3xl font-bold text-gray-900 mb-2">2000+</div>
-            <div className="text-gray-600">Clients satisfaits</div>
+            <div className="text-gray-600">{t('about.clients')}</div>
           </div>
         </div>
 
@@ -104,11 +124,10 @@ const About: React.FC = () => {
         <div className="mb-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Notre équipe dirigeante
+              {t('about.team.title')}
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Des professionnels expérimentés qui mettent leur expertise 
-              au service de votre réussite.
+              {t('about.team.description')}
             </p>
           </div>
 
@@ -134,11 +153,10 @@ const About: React.FC = () => {
         <div className="mb-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Notre histoire
+              {t('about.history.title')}
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              15 années de croissance continue et d'innovation dans le secteur 
-              du transitariat international.
+              {t('about.history.description')}
             </p>
           </div>
 
@@ -172,13 +190,10 @@ const About: React.FC = () => {
         {/* Mission Statement */}
         <div className="bg-blue-50 p-8 rounded-2xl text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Notre mission
+            {t('about.mission.title')}
           </h3>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Accompagner nos clients dans leur développement international en leur offrant 
-            des solutions logistiques sur mesure, fiables et innovantes. Notre engagement : 
-            simplifier vos échanges internationaux pour vous permettre de vous concentrer 
-            sur votre cœur de métier.
+            {t('about.mission.description')}
           </p>
           
           <div className="mt-8">
@@ -189,7 +204,7 @@ const About: React.FC = () => {
               }}
               className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold"
             >
-              Rejoignez nos clients satisfaits
+              {t('about.mission.cta')}
             </button>
           </div>
         </div>

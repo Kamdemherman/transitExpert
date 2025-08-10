@@ -1,7 +1,10 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Testimonials: React.FC = () => {
+  const { t } = useTranslation();
+
   const testimonials = [
     {
       name: 'Pierre Moreau',
@@ -57,32 +60,32 @@ const Testimonials: React.FC = () => {
     { 
       name: 'Maersk', 
       logo: 'https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Leader mondial du transport maritime'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Leader mondial du transport maritime' : 'Global maritime transport leader'
     },
     { 
       name: 'CMA CGM', 
       logo: 'https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Compagnie maritime française'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Compagnie maritime française' : 'French maritime company'
     },
     { 
       name: 'Air France-KLM', 
       logo: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Transport aérien de marchandises'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Transport aérien de marchandises' : 'Air cargo transport'
     },
     { 
       name: 'DHL', 
       logo: 'https://images.pexels.com/photos/4391470/pexels-photo-4391470.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Express et logistique internationale'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Express et logistique internationale' : 'Express and international logistics'
     },
     { 
       name: 'Hapag-Lloyd', 
       logo: 'https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Transport maritime conteneurisé'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Transport maritime conteneurisé' : 'Containerized maritime transport'
     },
     { 
       name: 'Emirates SkyCargo', 
       logo: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop',
-      description: 'Fret aérien premium'
+      description: t('testimonials.partners.title') === 'Nos partenaires transporteurs' ? 'Fret aérien premium' : 'Premium air freight'
     }
   ];
 
@@ -92,11 +95,10 @@ const Testimonials: React.FC = () => {
         {/* Testimonials Section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Témoignages clients
+            {t('testimonials.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez pourquoi plus de 2000 entreprises nous font confiance 
-            pour leurs expéditions internationales.
+            {t('testimonials.description')}
           </p>
         </div>
 
@@ -138,11 +140,10 @@ const Testimonials: React.FC = () => {
         {/* Partners Section */}
         <div className="text-center">
           <h3 className="text-3xl font-bold text-gray-900 mb-8">
-            Nos partenaires transporteurs
+            {t('testimonials.partners.title')}
           </h3>
           <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-            Nous travaillons avec les leaders mondiaux du transport pour vous offrir 
-            les meilleures solutions logistiques.
+            {t('testimonials.partners.description')}
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
@@ -168,23 +169,23 @@ const Testimonials: React.FC = () => {
 
         {/* Stats Section */}
         <div className="mt-16 bg-blue-600 rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-8">Pourquoi nous choisir ?</h3>
+          <h3 className="text-2xl font-bold mb-8">{t('testimonials.why.title')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <div className="text-3xl font-bold mb-2">98%</div>
-              <div className="text-blue-200">Satisfaction client</div>
+              <div className="text-blue-200">{t('testimonials.satisfaction')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">2h</div>
-              <div className="text-blue-200">Délai de réponse</div>
+              <div className="text-blue-200">{t('testimonials.response')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">99.5%</div>
-              <div className="text-blue-200">Livraisons à l'heure</div>
+              <div className="text-blue-200">{t('testimonials.delivery')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-blue-200">Support disponible</div>
+              <div className="text-blue-200">{t('testimonials.support')}</div>
             </div>
           </div>
         </div>
