@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { MessageCircle, X, Send, Minimize2 } from 'lucide-react';
 import ChatWindow from './ChatWindow';
+import { useAnalytics, useInternalAnalytics } from '../hooks/useAnalytics';
 
 const ChatButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const { trackChatStart } = useAnalytics();
+  const { trackAction } = useInternalAnalytics();
 
   const toggleChat = () => {
+    if (!isOpen) {
+      // Track chat start
+      trackChatStart();
+      trackAction('chat_start');
+    }
     setIsOpen(!isOpen);
     setIsMinimized(false);
   };

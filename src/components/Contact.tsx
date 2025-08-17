@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useAnalytics, useInternalAnalytics } from '../hooks/useAnalytics';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
+  const { trackContactForm } = useAnalytics();
+  const { trackAction } = useInternalAnalytics();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,6 +26,13 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track the contact form submission
+    trackContactForm(formData.subject);
+    trackAction('contact_form', {
+      subject: formData.subject,
+      company: formData.company
+    });
     
     // Send to backend API
     fetch('/api/contact', {

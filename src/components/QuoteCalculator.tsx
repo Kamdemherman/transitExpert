@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Calculator, Package, MapPin, Clock, Weight } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useAnalytics, useInternalAnalytics } from '../hooks/useAnalytics';
 
 const QuoteCalculator: React.FC = () => {
   const { t } = useTranslation();
+  const { trackQuoteRequest } = useAnalytics();
+  const { trackAction } = useInternalAnalytics();
 
   const [formData, setFormData] = useState({
     origin: '',
@@ -26,6 +29,16 @@ const QuoteCalculator: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track the quote request
+    trackQuoteRequest(formData.origin, formData.destination, formData.cargoType);
+    trackAction('quote_request', {
+      origin: formData.origin,
+      destination: formData.destination,
+      cargo_type: formData.cargoType,
+      weight: formData.weight,
+      urgency: formData.urgency
+    });
     
     // Send to backend API
     fetch('/api/quotes', {

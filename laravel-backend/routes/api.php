@@ -127,3 +127,23 @@ Route::prefix('freight')->group(function () {
         ]);
     });
 });
+
+/*
+|--------------------------------------------------------------------------
+| Analytics Routes
+|--------------------------------------------------------------------------
+|
+| Routes for tracking website analytics and user behavior
+|
+*/
+
+Route::prefix('analytics')->group(function () {
+    // Public tracking routes
+    Route::post('/visitor', [App\Http\Controllers\AnalyticsController::class, 'trackVisitor']);
+    Route::post('/action', [App\Http\Controllers\AnalyticsController::class, 'trackAction']);
+    
+    // Protected routes (require authentication)
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/dashboard', [App\Http\Controllers\AnalyticsController::class, 'getDashboard']);
+    });
+});
