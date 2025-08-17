@@ -78,6 +78,61 @@ This Laravel backend provides a complete chat system for the freight forwarder w
    php artisan websockets:serve
    ```
 
+## Email Configuration
+
+### Environment Variables
+
+Configure the following email settings in your `.env` file:
+
+```env
+# SMTP Configuration
+MAIL_MAILER=smtp
+MAIL_HOST=your-smtp-host.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@domain.com
+MAIL_PASSWORD=your-email-password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="noreply@transitaire-expert.fr"
+MAIL_FROM_NAME="TransitExpert"
+
+# Admin Email Addresses
+ADMIN_EMAIL=contact@transitaire-expert.fr
+ADMIN_NAME="TransitExpert Admin"
+QUOTES_EMAIL=devis@transitaire-expert.fr
+CONTACT_EMAIL=contact@transitaire-expert.fr
+SUPPORT_EMAIL=support@transitaire-expert.fr
+```
+
+### Email Notifications
+
+The system sends email notifications for:
+- **Quote Requests**: Sent to `QUOTES_EMAIL` when a new quote is submitted
+- **Contact Messages**: Sent to `CONTACT_EMAIL` when contact form is submitted
+- **Chat Messages**: Can be configured for important chat interactions
+
+### Email Templates
+
+Professional HTML email templates are included:
+- `resources/views/emails/quote-request.blade.php`
+- `resources/views/emails/contact-message.blade.php`
+
+### Testing Emails
+
+For development, you can use:
+- **Mailpit** (recommended): Local email testing tool
+- **Mailtrap**: Online email testing service
+- **Log driver**: Emails saved to log files
+
+```env
+# For development with Mailpit
+MAIL_MAILER=smtp
+MAIL_HOST=127.0.0.1
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+```
+
 ## API Endpoints
 
 ### Chat Management

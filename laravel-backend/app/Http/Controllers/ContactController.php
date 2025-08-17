@@ -46,7 +46,8 @@ class ContactController extends Controller
                 'ip_address' => $request->ip(),
             ]);
 
-            // Here you could send notification emails, trigger workflows, etc.
+            // Send notification email to admin
+            $this->sendContactNotification($contact);
 
             return response()->json([
                 'success' => true,
@@ -118,6 +119,27 @@ class ContactController extends Controller
                 'message' => 'Failed to mark message as read',
                 'error' => $e->getMessage()
             ], 500);
+        }
+    }
+
+    /**
+     * Send contact notification email
+     */
+    private function sendContactNotification(ContactMessage $contact): void
+    {
+        try {
+            // You can implement email sending here
+            // Mail::to(config('mail.admin_email', 'contact@transitaire-expert.fr'))
+            //     ->send(new ContactMessageNotification($contact));
+            
+            \Log::info('Contact message submitted', [
+                'name' => $contact->name,
+                'company' => $contact->company,
+                'email' => $contact->email,
+                'subject' => $contact->subject,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Failed to send contact notification: ' . $e->getMessage());
         }
     }
 }

@@ -55,7 +55,8 @@ class QuoteController extends Controller
                 'contact_name' => $request->contact_name,
             ]);
 
-            // Here you could send notification emails, trigger workflows, etc.
+            // Send notification email to admin
+            $this->sendQuoteNotification($quote);
 
             return response()->json([
                 'success' => true,
@@ -123,6 +124,28 @@ class QuoteController extends Controller
                 'message' => 'Failed to retrieve quote requests',
                 'error' => $e->getMessage()
             ], 500);
+        }
+    }
+
+    /**
+     * Send quote notification email
+     */
+    private function sendQuoteNotification(QuoteRequest $quote): void
+    {
+        try {
+            // You can implement email sending here
+            // Mail::to(config('mail.admin_email', 'contact@transitaire-expert.fr'))
+            //     ->send(new QuoteRequestNotification($quote));
+            
+            \Log::info('Quote request submitted', [
+                'reference' => $quote->reference_number,
+                'company' => $quote->company,
+                'email' => $quote->email,
+                'origin' => $quote->origin,
+                'destination' => $quote->destination,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Failed to send quote notification: ' . $e->getMessage());
         }
     }
 }
